@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year Roshuuu</title>
+    <style>
+        :root {
+            --primary-pink: #ff85a2;
+            --dark-pink: #f06292;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #main-card {
+            z-index: 10;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--dark-pink);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .celebrate-btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 133, 162, 0.4);
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .celebrate-btn:hover {
+            background-color: var(--dark-pink);
+            transform: scale(1.05);
+        }
+
+        #message-container {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        .message-text {
+            font-size: 1.3rem;
+            color: #444;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .signature {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--dark-pink);
+            margin-top: 20px;
+        }
+
+        /* Confetti/Firework Style Particles */
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #f00;
+            top: -20px;
+            z-index: 1;
+            border-radius: 3px;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Final Grand Animation: Glowing border */
+        .grand-finale {
+            box-shadow: 0 0 50px #ff85a2, inset 0 0 20px #ff85a2;
+            border-radius: 20px;
+            padding: 40px;
+            background: white;
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-card">
+        <h1>Happy New Year Roshuuu 🎀🎀</h1>
+        
+        <button class="celebrate-btn" id="btn" onclick="celebrate()">Celebrate! 🎉</button>
+
+        <div id="message-container">
+            <h2 style="color: #ff4757;">Happy New Year!</h2>
+            <p class="message-text">
+                Sending heartfelt wishes for an amazing New Year full of blessings.<br><br>
+                Life changes, but my New Year wishes for you remains: health, happiness, and love.
+            </p>
+            <div class="signature">By Huzu😁</div>
+        </div>
+    </div>
+
+    <script>
+        function celebrate() {
+            // Hide button, show text
+            document.getElementById('btn').style.display = 'none';
+            const container = document.getElementById('message-container');
+            container.style.display = 'block';
+            
+            // Add grand finale border animation
+            document.getElementById('main-card').classList.add('grand-finale');
+
+            // Create confetti particles 🎉
+            for (let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff85a2', '#ff4757', '#ffd32a', '#2ecc71', '#3498db', '#9b59b6'];
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            
+            // Randomize position and animation
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = confetti.style.width;
+            
+            // Random duration and delay
+            const duration = Math.random() * 3 + 2;
+            confetti.style.animationDuration = duration + 's';
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+
+            document.body.appendChild(confetti);
+
+            // Clean up elements
+            setTimeout(() => {
+                confetti.remove();
+            }, (duration + 2) * 1000);
+        }
+    </script>
+</body>
+</html>
